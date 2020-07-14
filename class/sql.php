@@ -20,7 +20,7 @@ class Sql extends PDO {
 
     public function setParam($statement, $key, $value) {
 
-            $$statement->bindParam($key, $value);  // encaixando os parâmetros no comando
+            $statement->bindParam($key, $value);  // encaixando os parâmetros no comando
 
     }
 
@@ -30,7 +30,7 @@ class Sql extends PDO {
     public function setParams($statement, $parameters = array()) {
 
         foreach ($parameters as $key => $value) {  // percorre todos os parâmetros dado como array
-            $$statement->setParam($key, $value);   // chamando o método setParam() 
+            $this->setParam($statement, $key, $value);   // chamando o método setParam() 
         }
 
 
