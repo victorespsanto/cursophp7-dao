@@ -51,6 +51,17 @@ class Usuario {
 
 	// funcão para carregar os atributos da classe
 
+	
+	public function setData($data) {
+
+			$this->setIdusuario($data['idusuario']);
+			$this->setDeslogin($data['deslogin']);
+			$this->setDessenha($data['dessenha']);
+			$this->setDtcadastro(new DateTime($data['dtcadastro']));
+
+	}
+
+
 	public function loadById($id) {
 
 		$sql = new Sql();
@@ -61,10 +72,8 @@ class Usuario {
 
 			$row = $result[0];
 
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($row);
+
 		}
 
 	}
@@ -112,16 +121,34 @@ class Usuario {
 
 			$row = $result[0];
 
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));  // DateTime() para formatação de data
+			$this->setData($row);
 
 		} else {
 
 			throw new Exception("Login e/ou senha inválidos!");   // retorna o erro caso for informado login e/ou senha errados.
 			
 		}
+
+	}
+
+	public function insert() {
+
+		$sql = new Sql();
+
+		$result = $sql->select("CALL tb_usuarios_insert(:LOGIN, :PASSWORD)", array(
+
+			':LOGIN'=>$this->getDeslogin(),
+			':PASSWORD'=>$this->getDessenha()
+		));
+
+		if ($result[0]) {  // se o array tiver pelo menos um componente retorna TRUE
+
+			$row = $result[0];
+
+			$this->setData($row);
+
+		}
+
 
 	}
 

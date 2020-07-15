@@ -53,4 +53,14 @@ echo "Inserido OK!!"*/
 
 //========================================================
 
+
+$aluno = new Usuario();
+
+$aluno->setDeslogin("aluno");
+$aluno->setDessenha('@lun@');
+
+$aluno->insert();
+
+echo $aluno;
+
  ?>
