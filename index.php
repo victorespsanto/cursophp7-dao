@@ -93,12 +93,23 @@ echo $user;*/
 
 ///=========================================================
 
-
+// uso da função delete sem parametros...
+/*
 $user = new Usuario();
 
 $user->loadById(8);
 
 $user->delete();
+
+echo $user;*/
+
+//=======================================================
+
+// uso de funçaõ delete com parametros...
+
+$user = new Usuario();
+
+$user->delete_param(4);
 
 echo $user;
 

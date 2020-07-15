@@ -191,13 +191,15 @@ class Usuario {
 
 	// fim da classe update...
 
+	// inclusão do mmétodo delete sem parametros
+
 	public function delete(){
 
-	$sql = new Sql();
+		$sql = new Sql();
 
-	$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
 
-		':ID'=>$this->getIdusuario()
+			':ID'=>$this->getIdusuario()
 
 	));
 
@@ -208,6 +210,29 @@ class Usuario {
 		$this->setDtcadastro(new DateTime());
 
 	}
+
+
+	// inclusão do mmétodo delete com parametro
+
+	public function delete_param($id){
+
+		$this->setIdusuario = $id;
+
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+
+			':ID'=>$this->getIdusuario()
+
+		));
+
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+
+	}
+	
 	
 
 	//fim
