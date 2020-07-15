@@ -51,7 +51,8 @@ class Usuario {
 
 	// funcão para carregar os atributos da classe
 
-	
+	//  criação da função setData() para parametrizar os campos dos registros
+
 	public function setData($data) {
 
 			$this->setIdusuario($data['idusuario']);
@@ -61,12 +62,16 @@ class Usuario {
 
 	}
 
+	// fim da função
 
+	// funcão para carregar os atributos da classe
 	public function loadById($id) {
 
 		$sql = new Sql();
 
-		$result = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(":ID"=>$id));
+		$result = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(
+
+			":ID"=>$id));
 
 		if ($result[0]) {
 
@@ -131,17 +136,23 @@ class Usuario {
 
 	}
 
+	// classe construtora
+
 	public function __construct($login = "", $senha = "") {
 
 		$this->deslogin = $login;
 		$this->dessenha = $senha;
 	}
 
+	// fim da classe construtora
+
+	// função insert para inclusão de cnovos registros no banco de dados
+
 	public function insert() {
 
 		$sql = new Sql();
 
-		$result = $sql->select("CALL tb_usuarios_insert(:LOGIN, :PASSWORD)", array(
+		$result = $sql->select("CALL tb_usuarios_insert(:LOGIN, :PASSWORD)", array( // chamada de um procedure criado no banco de dados
 
 			':LOGIN'=>$this->getDeslogin(),
 			':PASSWORD'=>$this->getDessenha()
@@ -156,6 +167,10 @@ class Usuario {
 		}
 
 	}
+
+	// fim da função
+
+	// classe update para alteração de registros 
 
 
 	public function update($newLogin, $newSenha){
@@ -174,7 +189,25 @@ class Usuario {
 		));
 	}
 
+	// fim da classe update...
 
+	public function delete(){
+
+	$sql = new Sql();
+
+	$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+
+		':ID'=>$this->getIdusuario()
+
+	));
+
+
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+
+	}
 	
 
 	//fim

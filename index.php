@@ -82,13 +82,25 @@ echo $aluno;
 
 
 // usando o metodo update()...
-
+/*
 $user = new Usuario();
 
 $user->loadById(9);
 
 $user->update('Lorenzo', 'calmo');
 
+echo $user;*/
+
+///=========================================================
+
+
+$user = new Usuario();
+
+$user->loadById(8);
+
+$user->delete();
+
 echo $user;
+
 
  ?>
