@@ -54,13 +54,41 @@ echo "Inserido OK!!"*/
 //========================================================
 
 
-$aluno = new Usuario();
+// usando o método insert()
+
+/*$aluno = new Usuario();
 
 $aluno->setDeslogin("aluno");
 $aluno->setDessenha('@lun@');
 
 $aluno->insert();
 
+echo $aluno;*/
+
+//========================================================
+
+// usando o método construtor...
+
+/*
+$aluno = new Usuario('Pedro', 'matoso');
+
+$aluno->insert();
+
 echo $aluno;
+
+*/
+
+//========================================================
+
+
+// usando o metodo update()...
+
+$user = new Usuario();
+
+$user->loadById(9);
+
+$user->update('Lorenzo', 'calmo');
+
+echo $user;
 
  ?>
